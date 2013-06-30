@@ -1,0 +1,56 @@
+* {
+margin: 0px;
+padding: 0px;
+}
+
+#stage {
+  width: 600px;
+  margin: 10px auto;
+}
+
+.img {
+  width: 190px;
+  float:left;
+  list-style-type: none;
+  position: relative;
+}
+
+.img img {
+  display: block;
+  margin: auto;
+  width: 100px;
+  height: 134px;
+}
+
+.img span {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+#footer {
+  position: relative;
+  height: 100px;
+}
+
+#weapon {
+  top: -35px;
+  left: 0px;
+  position: absolute;
+  z-index: 2;
+}
+
+#sound_waves{
+  height: 65px;
+  position: relative;
+}
+
+#volume {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+
+.clear {
+  clear: both;
+}
