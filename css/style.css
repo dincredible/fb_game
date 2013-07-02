@@ -56,7 +56,8 @@ a{
 
 #footer {
   position: relative;
-  height: 100px;
+  height: 140px;
+  text-align: center;
 }
 
 #weapon {
@@ -85,6 +86,14 @@ a{
  width: 130px;
  font-size: 18px;
  display:block;
+}
+
+#restart{
+  position: absolute;
+  left:188px;
+  bottom: 0px;
+  font-weight: bold;
+  font-size:24px;
 }
 
 .clear {

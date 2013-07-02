@@ -53,8 +53,11 @@
         <span id="power" style="display:none;">1</span>    
       </div>
     </div>
+    <div id="restart" style="display:none;">
+      <a href="javascript: void(0);" onclick="game.restart()">ПРОТЕСТИРАЙ!</a>
+    </div>
   </div>
-</div>
+</div><!-- stage -->
 <audio id="player" src="sound/whistle.mp3"></audio>
 </body>
 </html>

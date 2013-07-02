@@ -2,27 +2,50 @@ function init(){
   $('#player').bind('ended', function(){
     game.enableSound = true;
     game.stopToShoot();
-  })
-  game.gotoPosition(0);
-  game.whoIsTheman();
-  $('#player').get(0).volume = game.volume;
+  });
+  game.restart();
 }
 
 var game = function() {};
 game.position = 0;
-game.step = 190;
-game.left = 32;
-game.enableSound = true;
-game.volume = 0.1;
-game.power = 1;
-game.politics = new Array('#stanishev .politician','#mestan .politician', '#siderov .politician');
 game.monStatus = new Array(1,1,1);
+game.enableSound = true;
 game.themans = 3;
 game.firstTheman = 0;
-game.initScore = 3;
+game.initScoreVal = 3;
+game.step = 190;
+game.left = 32;
+game.volume = 0.5;
+game.power = 1;
+game.politics = new Array('#stanishev .politician','#mestan .politician', '#siderov .politician');
 
-game.enable= function(){
-  enableSound = true;
+game.restart = function() {
+  $('#restart').hide();
+  this.initParams();
+  this.initScore();
+  this.initImages();
+  game.gotoPosition(0);
+  game.whoIsTheman();
+  $('#player').get(0).volume = game.volume;  
+}
+
+game.initParams = function(){
+  this.position = 0;
+  this.monStatus = new Array(1,1,1);
+  this.enableSound = true;
+  this.themans = 3;
+  this.firstTheman = 0;
+  this.initScoreVal = 3;
+}
+
+game.initScore = function() {
+  $('.score').each(function(){$(this).show()});
+  $('.score span').each(function(){$(this).html(game.initScoreVal)});
+}
+
+game.initImages = function() {
+  $('.img .politician').each(function(){$(this).css('opacity',1)});
+  $('.img .fired').each(function(){$(this).hide()});
 }
 
 game.whoIsTheman = function() {
@@ -75,6 +98,9 @@ game.setPoints = function(pos){
     $('#fired'+pos).show();
     this.monStatus[pos]=0;
     this.themans--;
+    if(this.themans <= 0) {
+      $('#restart').show();
+    }
   }
   $('#score'+pos).html(s);
 }
