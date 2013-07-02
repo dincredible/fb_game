@@ -4,7 +4,7 @@ function init(){
     game.stopToShoot();
   })
   game.gotoPosition(0);
-  game.whoIsAThief();
+  game.whoIsTheman();
   $('#player').get(0).volume = game.volume;
 }
 
@@ -17,30 +17,30 @@ game.volume = 0.1;
 game.power = 1;
 game.politics = new Array('#stanishev .politician','#mestan .politician', '#siderov .politician');
 game.monStatus = new Array(1,1,1);
-game.thiefs = 3;
-game.firstThief = 0;
+game.themans = 3;
+game.firstTheman = 0;
 game.initScore = 3;
 
 game.enable= function(){
   enableSound = true;
 }
 
-game.whoIsAThief = function() {
-  this.firstThief = this.getFirstThief();
-  var arr = this.getThiefsAvailable();
+game.whoIsTheman = function() {
+  this.firstTheman = this.getFirstTheman();
+  var arr = this.getThemansAvailable();
   if(arr.length > 1) {
     var ind = Math.round(Math.round(Math.random()*10)/8);
-    $('.thief').each(function(){$(this).hide()});
-    $('#thief'+arr[ind]).show();
+    $('.theman').each(function(){$(this).hide()});
+    $('#theman'+arr[ind]).show();
     this.position = arr[ind];
   } else {
-    this.position = this.firstThief;
-    $('#thief'+this.firstThief).show();
+    this.position = this.firstTheman;
+    $('#theman'+this.firstTheman).show();
   }
   return this.position;
 }
 
-game.getThiefsAvailable = function() {
+game.getThemansAvailable = function() {
   var arr = new Array();
   for(var i = 0; i < this.monStatus.length; i++) {
     if(i != this.position && this.monStatus[i] != 0) {
@@ -55,14 +55,14 @@ game.shoot = function(pos) {
   if(this.enableSound && this.monStatus[pos] == 1) {
     this.position = pos;
     game.gotoPosition(pos);
-    $('#thief'+this.position).hide();    
+    $('#theman'+this.position).hide();    
     $('#sound_waves img').show();
     this.shake($(game.politics[pos]));
     $('#player').get(0).play();
     this.enableSound = false;
     this.setPoints(pos);
   }
-  this.whoIsAThief();
+  this.whoIsTheman();
 };
 game.setPoints = function(pos){
   var s = parseInt($('#score'+pos).html()) - 1;
@@ -74,12 +74,12 @@ game.setPoints = function(pos){
     $($('.score').get(pos)).hide();
     $('#fired'+pos).show();
     this.monStatus[pos]=0;
-    this.thiefs--;
+    this.themans--;
   }
   $('#score'+pos).html(s);
 }
 
-game.getFirstThief = function() {
+game.getFirstTheman = function() {
   for(var i = 0 ; i < this.monStatus.length; i++) {
     if(this.monStatus[i] == 1) {
       break;
