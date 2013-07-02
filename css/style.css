@@ -2,6 +2,17 @@
 margin: 0px;
 padding: 0px;
 }
+html {
+  font-family: Verdana,Arial,_sans;
+}
+img {
+  border: none;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
 
 #stage {
   width: 600px;
@@ -21,11 +32,26 @@ padding: 0px;
   width: 100px;
   height: 134px;
 }
+  
+.img .fired {
+  display: block;
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  top: 40px;
+  left: 45px;
+  z-index: 4;
+}
 
-.img span {
+.img .score {
   position: absolute;
   top: 5px;
   left: 5px;
+  font-size:12px;
+}
+.img .score span {
+  font-size:14px;
+  font-weight: bold;
 }
 
 #footer {
@@ -49,6 +75,16 @@ padding: 0px;
   position: absolute;
   right: 0px;
   bottom: 0px;
+}
+
+.thief{
+ position:absolute;
+ bottom: -27px;
+ left: 30px;
+ z-index: 3;
+ width: 130px;
+ font-size: 18px;
+ display:block;
 }
 
 .clear {
