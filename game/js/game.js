@@ -2,6 +2,7 @@ function init(){
   $('#player').bind('ended', function(){
     game.enableSound = true;
     game.stopToShoot();
+    $('#theman'+game.position).show();
   });
   game.restart();
 }
@@ -20,13 +21,17 @@ game.power = 1;
 game.politics = new Array('#stanishev .politician','#mestan .politician', '#siderov .politician');
 
 game.restart = function() {
+  $('#video').html('');
   $('#restart').hide();
+  $('#header').show();
+  $('#footer').show();
   this.initParams();
   this.initScore();
   this.initImages();
   game.gotoPosition(0);
   game.whoIsTheman();
   $('#player').get(0).volume = game.volume;  
+  $('#theman'+this.position).show();
 }
 
 game.initParams = function(){
@@ -54,7 +59,6 @@ game.whoIsTheman = function() {
   if(arr.length > 1) {
     var ind = Math.round(Math.round(Math.random()*10)/8);
     $('.theman').each(function(){$(this).hide()});
-    $('#theman'+arr[ind]).show();
     this.position = arr[ind];
   } else {
     this.position = this.firstTheman;
@@ -99,10 +103,23 @@ game.setPoints = function(pos){
     this.monStatus[pos]=0;
     this.themans--;
     if(this.themans <= 0) {
-      $('#restart').show();
+      this.finish();
     }
   }
   $('#score'+pos).html(s);
+}
+
+game.finish = function(){
+  $('#header').hide();
+  $('#footer').hide();  
+  $('#restart').show();
+  
+  var videoObj = '<object width="640" height="390" id="vplayer">';
+      videoObj += '<param name="movie" value="https://www.youtube.com/v/Uxcn5-ZG9jI?version=3&autoplay=1"></param>';
+      videoObj += '<param name="allowScriptAccess" value="always"></param>'
+      videoObj += '<embed src="https://www.youtube.com/v/Uxcn5-ZG9jI?version=3&autoplay=1" type="application/x-shockwave-flash" allowscriptaccess="always" width="640" height="390"></embed>';
+      videoObj += '</object>';
+      $('#video').append(videoObj);      
 }
 
 game.getFirstTheman = function() {
